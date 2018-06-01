@@ -4,8 +4,19 @@ import {connect} from "react-redux";
 import {change, Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
 import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "./redux/autosuggestReducer";
+import Debounce from "./Debounce";
 
 class AutosuggestField extends Component {
+
+    debounce = new Debounce({
+        func: function (value) {
+            console.log(`Sending request to server... ${value}`);
+            const suggestions = this.getSuggestions(value);
+            console.log(`Server response found ${suggestions.length}`);
+            this.props.dispatch(foundSuggestions(suggestions))
+        }.bind(this),
+        wait: 1000
+    });
 
     getSuggestions = value => {
         const inputValue = value.trim().toLowerCase();
@@ -21,8 +32,7 @@ class AutosuggestField extends Component {
     };
 
     onSuggestionsFetchRequested = ({value}) => {
-        const suggestions = this.getSuggestions(value);
-        this.props.dispatch(foundSuggestions(suggestions))
+        this.debounce.debouncedSearch(value);
     };
 
     onSuggestionsClearRequested = () => {
