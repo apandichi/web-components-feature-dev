@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {change, Field} from 'redux-form'
+import {Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
 import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "./redux/autosuggestReducer";
 import Debounce from "./Debounce";
+import {showProgressBar} from "./redux/progressBarReducer";
 
 class AutosuggestField extends Component {
 
@@ -13,7 +14,8 @@ class AutosuggestField extends Component {
             console.log(`Sending request to server... ${value}`);
             const suggestions = this.getSuggestions(value);
             console.log(`Server response found ${suggestions.length}`);
-            this.props.dispatch(foundSuggestions(suggestions))
+            this.props.dispatch(foundSuggestions(suggestions));
+            this.props.dispatch(showProgressBar(false));
         }.bind(this),
         wait: 1000
     });
@@ -32,6 +34,7 @@ class AutosuggestField extends Component {
     };
 
     onSuggestionsFetchRequested = ({value}) => {
+        this.props.dispatch(showProgressBar(true));
         this.debounce.debouncedSearch(value);
     };
 
@@ -45,9 +48,10 @@ class AutosuggestField extends Component {
         this.props.autocomplete.forEach(fieldName => this.props.change(fieldName, selected.suggestion[fieldName]))
     };
 
-    renderInputComponent = inputProps => (
-        <Field {...this.props} {...inputProps} />
-    );
+    renderInputComponent = inputProps => {
+        const {autocomplete, change, sessions, autosuggest, ...otherProps} = this.props;
+        return (<Field {...otherProps} {...inputProps} />)
+    };
 
     render() {
         const inputProps = {

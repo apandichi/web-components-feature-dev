@@ -9,9 +9,9 @@ import {showDialog} from "./redux/dialogReducer";
 import {addSlot} from "./redux/sessionsReducer";
 import AutosuggestField from "./AutosuggestField";
 
-export const materialDesignInput = (field) =>
-    <Input {...field.input} {...field}
-           onChange={(newValue, event) => field.input.onChange && field.input.onChange(event, newValue)}
+export const materialDesignInput = ({input, meta, ...otherProps}) =>
+    <Input {...input} {...otherProps}
+           onChange={(newValue, event) => input.onChange && input.onChange(event, newValue)}
 
     />;
 
@@ -27,7 +27,7 @@ class NewSessionForm extends Component {
     };
 
     render() {
-        const {handleSubmit, pristine, reset, submitting} = this.props;
+        const {handleSubmit, submitting} = this.props;
         const onSubmit = handleSubmit(this.saveSlot.bind(this));
         return (
             <form onSubmit={onSubmit}>
