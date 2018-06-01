@@ -1,31 +1,19 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Field} from 'redux-form'
+import {change, Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
 import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "./redux/autosuggestReducer";
-import {materialDesignInput} from "./NewSessionForm";
 
-const getSuggestionValue = suggestion => suggestion.name;
-
-const renderSuggestion = suggestion => (
-    <div>
-        {suggestion.name}
-    </div>
-);
-
-class AutosuggestInput extends Component {
-
-    renderFieldComponent = inputProps => (
-        <Field {...inputProps} {...this.props} component={materialDesignInput}/>
-    );
+class AutosuggestField extends Component {
 
     getSuggestions = value => {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
-
-        return inputLength === 0 ? [] : this.props.sessions.filter(session =>
-            session.name.toLowerCase().slice(0, inputLength) === inputValue
+        const suggestions = inputLength === 0 ? [] : this.props.sessions.filter(session =>
+            session.name.toLowerCase().indexOf(inputValue) >= 0
         );
+        return _.uniqBy(suggestions, 'name');
     };
 
     onChange = (event, {newValue}) => {
@@ -41,22 +29,31 @@ class AutosuggestInput extends Component {
         this.props.dispatch(suggestionsClearRequested())
     };
 
-    render() {
+    onSuggestionSelected = (event, selected) => {
+        const selectedValue = selected.suggestion[this.props.name];
+        this.props.change(this.props.name, selectedValue);
+        this.props.autocomplete.forEach(fieldName => this.props.change(fieldName, selected.suggestion[fieldName]))
+    };
 
+    renderInputComponent = inputProps => (
+        <Field {...this.props} {...inputProps} />
+    );
+
+    render() {
         const inputProps = {
             value: this.props.autosuggest.value,
             onChange: this.onChange,
         };
-
         return (
             <Autosuggest
                 suggestions={this.props.autosuggest.suggestions}
+                getSuggestionValue={suggestion => suggestion.name}
+                renderSuggestion={suggestion => suggestion.name}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
+                onSuggestionSelected={this.onSuggestionSelected}
                 renderInputComponent={this.renderInputComponent}
-                focusInputOnSuggestionClick={false} // fixes error similar to https://github.com/moroshko/react-autosuggest/issues/464
+                focusInputOnSuggestionClick={false}
                 inputProps={inputProps}
             />
         );
@@ -70,4 +67,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(AutosuggestInput);
+export default connect(mapStateToProps)(AutosuggestField);

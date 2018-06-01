@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SessionCard from "./SessionCard";
-import './Sessions.css';
 
 class Sessions extends Component {
 

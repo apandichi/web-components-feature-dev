@@ -1,6 +1,3 @@
-import 'material-design-icons/iconfont/material-icons.css'
-import './App.css';
-
 import React, {Component} from 'react';
 import Button from 'react-toolbox/lib/button/Button';
 import Sessions from "./Sessions";

@@ -4,10 +4,10 @@ import Input from 'react-toolbox/lib/input/Input';
 import {Field, reduxForm} from 'redux-form'
 
 import 'material-design-icons/iconfont/material-icons.css'
-import './App.css';
+import './assets/css/App.css';
 import {showDialog} from "./redux/dialogReducer";
 import {addSlot} from "./redux/sessionsReducer";
-import AutosuggestInput from "./AutosuggestInput";
+import AutosuggestField from "./AutosuggestField";
 
 export const materialDesignInput = (field) =>
     <Input {...field.input} {...field}
@@ -32,9 +32,9 @@ class NewSessionForm extends Component {
         return (
             <form onSubmit={onSubmit}>
                 <Field label='Avatar' name="avatar" maxLength={2000} component={materialDesignInput}/>
-                <Field required label='Name' name='name' maxLength={255} component={materialDesignInput}/>
+                <AutosuggestField autocomplete={['avatar']} required label='Name' name='name' maxLength={255} component={materialDesignInput} change={this.props.change}/>
                 <Field label='Talk' name='talk' maxLength={255} component={materialDesignInput}/>
-                {/*<AutosuggestInput required label='Name' name='name' maxLength={255} />*/}
+
 
                 <div style={{"textAlign": "right"}}>
                     <Button label='Cancel' onClick={this.hideDialog}/>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import {connect} from "react-redux";
 import 'material-design-icons/iconfont/material-icons.css'
-import './App.css';
+import './assets/css/App.css';
 import {showDialog} from "./redux/dialogReducer";
 import NewSessionForm from "./NewSessionForm";
 
