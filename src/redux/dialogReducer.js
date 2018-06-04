@@ -3,7 +3,7 @@ import {createAction, createReducer} from "redux-act";
 export const showDialog = createAction("Show dialog");
 
 const initialState = {
-    active: true
+    active: false
 };
 
 const dialogReducer = createReducer({

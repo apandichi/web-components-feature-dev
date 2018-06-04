@@ -7,7 +7,7 @@ import 'material-design-icons/iconfont/material-icons.css'
 import './assets/css/App.css';
 import {showDialog} from "./redux/dialogReducer";
 import {addSlot} from "./redux/sessionsReducer";
-import AutosuggestField from "./AutosuggestField";
+import AutosuggestField from "./components/AutosuggestField";
 
 export const materialDesignInput = ({input, meta, ...otherProps}) =>
     <Input {...input} {...otherProps}

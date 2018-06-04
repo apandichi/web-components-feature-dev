@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
-import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "./redux/autosuggestReducer";
+import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "../redux/autosuggestReducer";
 import Debounce from "./Debounce";
-import {showProgressBar} from "./redux/progressBarReducer";
+import {showProgressBar} from "../redux/progressBarReducer";
 
 class AutosuggestField extends Component {
 

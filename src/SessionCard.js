@@ -4,14 +4,11 @@ import {Card, CardText, CardTitle} from 'react-toolbox/lib/card';
 class SessionCard extends Component {
 
     render() {
+        const {avatar, name, talk, abstract} = this.props.session;
         return (
             <Card style={{width: '400px', margin: '10px'}}>
-                <CardTitle
-                    avatar={this.props.session.avatar}
-                    title={this.props.session.name}
-                    subtitle={this.props.session.talk}
-                />
-                <CardText>{this.props.session.abstract}</CardText>
+                <CardTitle avatar={avatar} title={name} subtitle={talk} />
+                <CardText>{abstract}</CardText>
             </Card>
         );
     }
