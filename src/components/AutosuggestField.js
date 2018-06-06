@@ -33,7 +33,8 @@ class AutosuggestField extends Component {
         this.props.dispatch(autosuggestInputChange(newValue))
     };
 
-    onSuggestionsFetchRequested = ({value}) => {
+    onSuggestionsFetchRequested = ({value, reason}) => {
+        if (reason === 'input-focused') return;
         this.props.dispatch(showProgressBar(true));
         this.debounce.debouncedSearch(value);
     };
