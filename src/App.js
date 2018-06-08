@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Card, CardMedia, CardTitle, CardText, CardActions} from 'react-toolbox/lib/card';
 import SessionCard from "./components/SessionCard";
+import Sessions from "./components/Sessions";
 
 class App extends Component {
 
@@ -9,9 +10,7 @@ class App extends Component {
         const sessions = this.props.sessions;
         return (
             <div className="App">
-                {sessions.map((session) => {
-                    return <SessionCard session={session}/>
-                })}
+                <Sessions sessions={sessions} />
             </div>
         );
     }
