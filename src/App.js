@@ -7,6 +7,7 @@ import {showDialog} from "./redux/dialogReducer";
 import HiddenProgressBar from "./components/HiddenProgressBar";
 import SessionFormWithFields from "./components/SessionFormWithFields";
 import SessionFormWithInputs from "./components/SessionFormWithInputs";
+import SessionFormWithAutosuggestAutocomplete from "./components/SessionFormWithAutosuggestAutocomplete";
 
 class App extends Component {
 
@@ -21,7 +22,7 @@ class App extends Component {
                 <Button icon='add' label='Add slot' raised primary onClick={this.showDialogToAddSlot} />
                 <NewSessionDialog>
                     <HiddenProgressBar />
-                    <SessionFormWithInputs />
+                    <SessionFormWithAutosuggestAutocomplete />
                 </NewSessionDialog>
             </div>
         );

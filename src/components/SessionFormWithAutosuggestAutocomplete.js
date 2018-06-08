@@ -8,6 +8,7 @@ import '../assets/css/App.css';
 import {showDialog} from "../redux/dialogReducer";
 import {addSlot} from "../redux/sessionsReducer";
 import AutosuggestField from "./AutosuggestField";
+import DebouncedAutosuggestField from "./DebouncedAutosuggestField";
 
 export const materialDesignInput = ({input, meta, ...otherProps}) =>
     <Input {...input} {...otherProps}
@@ -32,7 +33,7 @@ class SessionFormWithAutosuggest extends Component {
         return (
             <form onSubmit={onSubmit}>
                 <Field label='Avatar' name="avatar" maxLength={2000} component={materialDesignInput}/>
-                <AutosuggestField autocomplete={['avatar']} required label='Name' name='name' maxLength={255} component={materialDesignInput} change={this.props.change}/>
+                <DebouncedAutosuggestField autocomplete={['avatar']} required label='Name' name='name' maxLength={255} component={materialDesignInput} change={this.props.change}/>
                 <Field label='Talk' name='talk' maxLength={255} component={materialDesignInput}/>
 
 
