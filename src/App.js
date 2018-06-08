@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Card, CardActions, CardMedia, CardText, CardTitle} from 'react-toolbox/lib/card';
+import ProgressBar from 'react-toolbox/lib/progress_bar';
+
 import Sessions from "./components/Sessions";
 import Button from 'react-toolbox/lib/button/Button';
 import {showDialog} from "./redux/dialogReducer";
@@ -28,6 +30,7 @@ class App extends Component {
                 <NewSessionDialog>
                     <SessionFormWithAutosuggestAutocomplete />
                 </NewSessionDialog>
+
             </div>
         );
     }

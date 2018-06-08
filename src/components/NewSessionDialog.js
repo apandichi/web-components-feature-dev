@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import 'material-design-icons/iconfont/material-icons.css'
 import '../assets/css/App.css';
 import {showDialog} from "../redux/dialogReducer";
+import HiddenProgressBar from "./HiddenProgressBar";
 
 class NewSessionDialog extends Component {
 
@@ -19,6 +20,7 @@ class NewSessionDialog extends Component {
                 onOverlayClick={this.hideDialog}
                 title='Add a new slot'
             >
+                <HiddenProgressBar />
                 {this.props.children}
             </Dialog>
         );
