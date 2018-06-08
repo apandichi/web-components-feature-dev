@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import {connect} from "react-redux";
 import 'material-design-icons/iconfont/material-icons.css'
-import './assets/css/App.css';
-import {showDialog} from "./redux/dialogReducer";
-import NewSessionForm from "./NewSessionForm";
-import HiddenProgressBar from "./components/HiddenProgressBar";
+import '../assets/css/App.css';
+import {showDialog} from "../redux/dialogReducer";
 
 class NewSessionDialog extends Component {
 
@@ -21,8 +19,7 @@ class NewSessionDialog extends Component {
                 onOverlayClick={this.hideDialog}
                 title='Add a new slot'
             >
-                <HiddenProgressBar />
-                <NewSessionForm/>
+                {this.props.children}
             </Dialog>
         );
     }
@@ -30,7 +27,6 @@ class NewSessionDialog extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        progressBar: state.progressBar,
         dialog: state.dialog,
     }
 };
