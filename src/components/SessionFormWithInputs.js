@@ -9,12 +9,6 @@ import '../assets/css/App.css';
 import {showDialog} from "../redux/dialogReducer";
 import {addSlot} from "../redux/sessionsReducer";
 
-export const materialDesignInput = ({input, meta, ...otherProps}) =>
-    <Input {...input} {...otherProps}
-           onChange={(newValue, event) => input.onChange && input.onChange(event, newValue)}
-
-    />;
-
 class NewSessionForm extends Component {
 
     hideDialog = () => {
@@ -27,8 +21,6 @@ class NewSessionForm extends Component {
     };
 
     render() {
-        const {handleSubmit, submitting} = this.props;
-        // const onSubmit = handleSubmit(this.saveSlot.bind(this));
         return (
             <form onSubmit={this.saveSlot}>
                 <Input label='Avatar' name="avatar" maxLength={2000} />
