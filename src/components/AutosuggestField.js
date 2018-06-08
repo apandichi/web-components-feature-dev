@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
-import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "../redux/autosuggestReducer";
+import {autosuggestInputChange, displaySuggestions, suggestionsClearRequested} from "../redux/autosuggestReducer";
 import {showProgressBar} from "../redux/progressBarReducer";
 
 class AutosuggestField extends Component {
@@ -12,7 +12,7 @@ class AutosuggestField extends Component {
         console.log(`Sending request to server... ${value}`);
         const suggestions = this.getSuggestions(value);
         console.log(`Server response found ${suggestions.length}`);
-        this.props.dispatch(foundSuggestions(suggestions));
+        this.props.dispatch(displaySuggestions(suggestions));
         this.props.dispatch(showProgressBar(false));
     };
 

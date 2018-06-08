@@ -2,7 +2,7 @@ import {createAction} from "redux-act";
 import {createReducer} from "redux-act";
 
 export const autosuggestInputChange = createAction("Autosuggest input change");
-export const foundSuggestions = createAction("Found suggestions");
+export const displaySuggestions = createAction("Found suggestions");
 export const suggestionsClearRequested = createAction("Suggestions clear requested");
 
 
@@ -18,7 +18,7 @@ const autosuggestReducer = createReducer({
             value: value
         };
     },
-    [foundSuggestions]: (state, suggestions) => {
+    [displaySuggestions]: (state, suggestions) => {
         return {
             ...state,
             suggestions: suggestions
