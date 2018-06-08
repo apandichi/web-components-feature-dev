@@ -8,7 +8,10 @@ class Sessions extends Component {
             <div className="sessions">
                 {
                     this.props.sessions.map((session, index) => (
-                        <SessionCard key={index} session={session} />
+                        <SessionCard
+                            key={index}
+                            session={session}
+                        />
                     ))
                 }
             </div>

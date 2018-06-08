@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Button from 'react-toolbox/lib/button/Button';
-import Sessions from "./Sessions";
+import Sessions from "./components/Sessions";
 import {connect} from "react-redux";
 import NewSessionDialog from "./NewSessionDialog";
 import {showDialog} from "./redux/dialogReducer";
