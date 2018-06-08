@@ -30,7 +30,7 @@ class NewSessionForm extends Component {
 
                 <div style={{"textAlign": "right"}}>
                     <Button label='Cancel' onClick={this.hideDialog}/>
-                    <Button label='Save' type="submit" disabled={submitting} raised primary/>
+                    <Button label='Save' type="submit" raised primary/>
                 </div>
             </form>
         );
