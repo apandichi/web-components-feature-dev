@@ -6,6 +6,7 @@ import Button from 'react-toolbox/lib/button/Button';
 import {showDialog} from "./redux/dialogReducer";
 import NewSessionDialog from "./components/NewSessionDialog";
 import NewSessionForm from "./components/SessionFormWithInputs";
+import SessionFormWithFields from "./components/SessionFormWithFields";
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
                 />
 
                 <NewSessionDialog>
-                    <NewSessionForm />
+                    <SessionFormWithFields />
                 </NewSessionDialog>
             </div>
         );
