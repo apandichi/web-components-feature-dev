@@ -15,7 +15,7 @@ export const materialDesignInput = ({input, meta, ...otherProps}) =>
 
     />;
 
-class NewSessionForm extends Component {
+class SessionFormWithAutosuggest extends Component {
 
     hideDialog = () => {
         this.props.dispatch(showDialog(false))
@@ -32,7 +32,7 @@ class NewSessionForm extends Component {
         return (
             <form onSubmit={onSubmit}>
                 <Field label='Avatar' name="avatar" maxLength={2000} component={materialDesignInput}/>
-                <AutosuggestField autocomplete={['avatar']} required label='Name' name='name' maxLength={255} component={materialDesignInput} change={this.props.change}/>
+                <AutosuggestField required label='Name' name='name' maxLength={255} component={materialDesignInput} change={this.props.change}/>
                 <Field label='Talk' name='talk' maxLength={255} component={materialDesignInput}/>
 
 
@@ -46,5 +46,5 @@ class NewSessionForm extends Component {
 }
 
 export default reduxForm({
-    form: 'NewSessionForm' // a unique identifier for this form
-})(NewSessionForm)
+    form: 'SessionFormWithAutosuggest' // a unique identifier for this form
+})(SessionFormWithAutosuggest)

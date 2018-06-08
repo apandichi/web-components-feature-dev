@@ -42,7 +42,9 @@ class AutosuggestField extends Component {
     onSuggestionSelected = (event, selected) => {
         const selectedValue = selected.suggestion[this.props.name];
         this.props.change(this.props.name, selectedValue);
-        this.props.autocomplete.forEach(fieldName => this.props.change(fieldName, selected.suggestion[fieldName]))
+        if (this.props.autocomplete) {
+            this.props.autocomplete.forEach(fieldName => this.props.change(fieldName, selected.suggestion[fieldName]))
+        }
     };
 
     renderInputComponent = inputProps => {
