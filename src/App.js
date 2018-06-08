@@ -8,6 +8,7 @@ import NewSessionDialog from "./components/NewSessionDialog";
 import NewSessionForm from "./components/SessionFormWithInputs";
 import SessionFormWithFields from "./components/SessionFormWithFields";
 import SessionFormWithAutosuggest from "./components/SessionFormWithAutosuggest";
+import SessionFormWithAutosuggestAutocomplete from "./components/SessionFormWithAutosuggestAutocomplete";
 
 class App extends Component {
 
@@ -25,7 +26,7 @@ class App extends Component {
                 />
 
                 <NewSessionDialog>
-                    <SessionFormWithAutosuggest />
+                    <SessionFormWithAutosuggestAutocomplete />
                 </NewSessionDialog>
             </div>
         );
