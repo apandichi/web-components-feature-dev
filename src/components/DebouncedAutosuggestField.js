@@ -4,17 +4,21 @@ import {connect} from "react-redux";
 import {Field} from 'redux-form'
 import Autosuggest from 'react-autosuggest';
 import {autosuggestInputChange, foundSuggestions, suggestionsClearRequested} from "../redux/autosuggestReducer";
+import Debounce from "./Debounce";
 import {showProgressBar} from "../redux/progressBarReducer";
 
-class AutosuggestField extends Component {
+class DebouncedAutosuggestField extends Component {
 
-    searchByName = function (value) {
-        console.log(`Sending request to server... ${value}`);
-        const suggestions = this.getSuggestions(value);
-        console.log(`Server response found ${suggestions.length}`);
-        this.props.dispatch(foundSuggestions(suggestions));
-        this.props.dispatch(showProgressBar(false));
-    };
+    debounce = new Debounce({
+        func: function (value) {
+            console.log(`Sending request to server... ${value}`);
+            const suggestions = this.getSuggestions(value);
+            console.log(`Server response found ${suggestions.length}`);
+            this.props.dispatch(foundSuggestions(suggestions));
+            this.props.dispatch(showProgressBar(false));
+        }.bind(this),
+        wait: 1000
+    });
 
     getSuggestions = value => {
         const inputValue = value.trim().toLowerCase();
@@ -32,7 +36,7 @@ class AutosuggestField extends Component {
     onSuggestionsFetchRequested = ({value, reason}) => {
         if (reason === 'input-focused') return;
         this.props.dispatch(showProgressBar(true));
-        this.searchByName(value);
+        this.debounce.debouncedSearch(value);
     };
 
     onSuggestionsClearRequested = () => {
@@ -78,4 +82,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(AutosuggestField);
+export default connect(mapStateToProps)(DebouncedAutosuggestField);
