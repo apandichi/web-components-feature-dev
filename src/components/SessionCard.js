@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardText, CardTitle} from 'react-toolbox/lib/card';
+import {Card, CardTitle} from 'react-toolbox/lib/card';
 
 class SessionCard extends Component {
 

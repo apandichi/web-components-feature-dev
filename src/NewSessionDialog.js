@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
-import ProgressBar from 'react-toolbox/lib/progress_bar';
 import {connect} from "react-redux";
 import 'material-design-icons/iconfont/material-icons.css'
 import './assets/css/App.css';
 import {showDialog} from "./redux/dialogReducer";
 import NewSessionForm from "./NewSessionForm";
+import HiddenProgressBar from "./components/HiddenProgressBar";
 
 class NewSessionDialog extends Component {
 
@@ -14,7 +14,6 @@ class NewSessionDialog extends Component {
     };
 
     render() {
-        const hiddenProgressBar = this.props.progressBar.show ? <ProgressBar type="linear" mode="indeterminate" /> : "";
         return (
             <Dialog
                 active={this.props.dialog.active}
@@ -22,7 +21,7 @@ class NewSessionDialog extends Component {
                 onOverlayClick={this.hideDialog}
                 title='Add a new slot'
             >
-                {hiddenProgressBar}
+                <HiddenProgressBar />
                 <NewSessionForm/>
             </Dialog>
         );
