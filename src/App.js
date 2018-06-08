@@ -5,13 +5,18 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox
 class App extends Component {
 
     render() {
+        const session = {
+            avatar: 'https://i0.wp.com/itakeunconf.com/wp-content/uploads/2018/02/9bffa3fa7e52e115f1662d227d335a39.png?zoom=1.25&resize=270%2C270&ssl=1',
+            name: 'Stefanie Hasler',
+            talk: 'Outside-in TDD on a React/Mobx Website'
+        }
         return (
             <div className="App">
                 <Card style={{width: '350px'}}>
                     <CardTitle
-                        avatar="https://placeimg.com/80/80/animals"
-                        title="Avatar style title"
-                        subtitle="Subtitle here"
+                        avatar={session.avatar}
+                        title={session.name}
+                        subtitle={session.talk}
                     />
                 </Card>
             </div>
