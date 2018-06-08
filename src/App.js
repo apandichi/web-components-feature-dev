@@ -4,8 +4,8 @@ import Sessions from "./components/Sessions";
 import {connect} from "react-redux";
 import NewSessionDialog from "./components/NewSessionDialog";
 import {showDialog} from "./redux/dialogReducer";
-import NewSessionForm from "./NewSessionForm";
 import HiddenProgressBar from "./components/HiddenProgressBar";
+import SessionFormWithFields from "./components/SessionFormWithFields";
 
 class App extends Component {
 
@@ -20,7 +20,7 @@ class App extends Component {
                 <Button icon='add' label='Add slot' raised primary onClick={this.showDialogToAddSlot} />
                 <NewSessionDialog>
                     <HiddenProgressBar />
-                    <NewSessionForm/>
+                    <SessionFormWithFields />
                 </NewSessionDialog>
             </div>
         );
