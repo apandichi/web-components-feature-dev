@@ -5,15 +5,16 @@ import SessionCard from "./components/SessionCard";
 import Sessions from "./components/Sessions";
 import Button from 'react-toolbox/lib/button/Button';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
+import {showDialog} from "./redux/dialogReducer";
 
 class App extends Component {
 
-    state = {
-        active: false
+    showTheDialog = () => {
+        this.props.dispatch(showDialog(true))
     };
 
-    handleToggle = () => {
-        this.setState({active: !this.state.active});
+    hideTheDialog = () => {
+        this.props.dispatch(showDialog(false))
     };
 
     render() {
@@ -22,13 +23,13 @@ class App extends Component {
             <div className="App">
                 <Sessions sessions={sessions} />
                 <Button icon='add' label='Add session' raised primary
-                    onClick={this.handleToggle}
+                    onClick={this.showTheDialog}
                 />
 
                 <Dialog
-                    active={this.state.active}
-                    onEscKeyDown={this.handleToggle}
-                    onOverlayClick={this.handleToggle}
+                    active={this.props.dialog.active}
+                    onEscKeyDown={this.hideTheDialog}
+                    onOverlayClick={this.hideTheDialog}
                     title='My awesome dialog'
                 >
                     <p>Here you can add arbitrary content. Components like Pickers are using dialogs now.</p>
@@ -41,6 +42,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         sessions: state.sessions,
+        dialog: state.dialog,
     }
 };
 
