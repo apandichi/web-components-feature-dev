@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Card, CardMedia, CardTitle, CardText, CardActions} from 'react-toolbox/lib/card';
-import SessionCard from "./components/SessionCard";
+import {Card, CardActions, CardMedia, CardText, CardTitle} from 'react-toolbox/lib/card';
 import Sessions from "./components/Sessions";
 import Button from 'react-toolbox/lib/button/Button';
-import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import {showDialog} from "./redux/dialogReducer";
 import NewSessionDialog from "./components/NewSessionDialog";
+import NewSessionForm from "./components/SessionFormWithInputs";
 
 class App extends Component {
 
@@ -23,7 +22,9 @@ class App extends Component {
                     onClick={this.showTheDialog}
                 />
 
-                <NewSessionDialog />
+                <NewSessionDialog>
+                    <NewSessionForm />
+                </NewSessionDialog>
             </div>
         );
     }
