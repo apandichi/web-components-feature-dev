@@ -7,6 +7,7 @@ import {showDialog} from "./redux/dialogReducer";
 import NewSessionDialog from "./components/NewSessionDialog";
 import NewSessionForm from "./components/SessionFormWithInputs";
 import SessionFormWithFields from "./components/SessionFormWithFields";
+import SessionFormWithAutosuggest from "./components/SessionFormWithAutosuggest";
 
 class App extends Component {
 
@@ -24,7 +25,7 @@ class App extends Component {
                 />
 
                 <NewSessionDialog>
-                    <SessionFormWithFields />
+                    <SessionFormWithAutosuggest />
                 </NewSessionDialog>
             </div>
         );

@@ -13,7 +13,7 @@ class AutosuggestField extends Component {
         const suggestions = this.getSuggestions(value);
         console.log(`Server response found ${suggestions.length}`);
         this.props.dispatch(foundSuggestions(suggestions));
-        this.props.dispatch(showProgressBar(false));
+        // this.props.dispatch(showProgressBar(false));
     };
 
     getSuggestions = value => {
@@ -31,7 +31,7 @@ class AutosuggestField extends Component {
 
     onSuggestionsFetchRequested = ({value, reason}) => {
         if (reason === 'input-focused') return;
-        this.props.dispatch(showProgressBar(true));
+        // this.props.dispatch(showProgressBar(true));
         this.searchByName(value);
     };
 
